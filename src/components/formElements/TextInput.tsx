@@ -15,7 +15,7 @@ export default function TextInput({ field, options }: Props) {
       <label htmlFor="firstName" className="text-left text-xl font-semibold">
         {field}
       </label>
-      <div className="flex gap-4">
+      <div className="flex ga">
         {options?.checkBox && <CheckBox field={options.checkBox} id={field} />}
         {options?.toggle && <Toggle id={`${field} Show`} />}
       </div>
