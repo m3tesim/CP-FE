@@ -1,6 +1,7 @@
 import "./index.css";
 import SideNAV from "./components/SideNav";
 import Tabs from "./components/Tabs";
+import ApplicationForm from "./Pages/ApplicationForm";
 function App() {
   return (
     <>
@@ -8,6 +9,7 @@ function App() {
         <SideNAV />
         <div className="w-full">
           <Tabs />
+          <ApplicationForm />
         </div>
       </div>
     </>

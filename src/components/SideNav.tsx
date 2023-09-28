@@ -3,7 +3,7 @@ import Doc from "../assets/doc.svg";
 import Burger from "../assets/burger.svg";
 export default function SideNAV() {
   return (
-    <nav className="z-10 w-28 h-screen sticky shadow-md text-center justify-center flex pt-12">
+    <nav className="z-10 w-20 h-screen fixed bg-white shadow-md text-center justify-center flex pt-12">
       <div className="flex flex-col gap-8">
         <img src={Burger} width={35} height={36} />
         <img src={Home} width={35} height={36} />
