@@ -1,3 +1,4 @@
+import CheckBox from "./CheckBox";
 import Toggle from "./Toggle";
 
 type Props = {
@@ -14,7 +15,10 @@ export default function TextInput({ field, options }: Props) {
       <label htmlFor="firstName" className="text-left text-xl font-semibold">
         {field}
       </label>
-      {options?.toggle && <Toggle id={`${5} Show`} />}
+      <div className="flex gap-4">
+        {options?.checkBox && <CheckBox field={options.checkBox} id={field} />}
+        {options?.toggle && <Toggle id={`${field} Show`} />}
+      </div>
     </div>
   );
 }

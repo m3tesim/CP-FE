@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-type ToggleSwitchProps = {
+type Props = {
   id: string;
   initialState?: boolean;
 };
-function ToggleSwitch({ id, initialState = true }: ToggleSwitchProps) {
+function Toggle({ id, initialState = true }: Props) {
   const [isChecked, setIsChecked] = useState(initialState);
 
   const handleToggle = () => {
@@ -34,4 +34,4 @@ function ToggleSwitch({ id, initialState = true }: ToggleSwitchProps) {
   );
 }
 
-export default ToggleSwitch;
+export default Toggle;

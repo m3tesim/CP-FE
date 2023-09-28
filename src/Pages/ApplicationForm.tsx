@@ -6,7 +6,32 @@ export default function ApplicationForm() {
     <section>
       <FormContainer title="Personal Information">
         <TextInput field="First Name" />
-        <TextInput field="Phone" options={{ toggle: true }} />
+        <TextInput field="Last Name" />
+        <TextInput field="Email" />
+        <TextInput
+          field="Phone (With out dial code)"
+          options={{ toggle: true, checkBox: "internal" }}
+        />
+        <TextInput
+          field="Nationality"
+          options={{ toggle: true, checkBox: "internal" }}
+        />
+        <TextInput
+          field="Current Residence "
+          options={{ toggle: true, checkBox: "internal" }}
+        />
+        <TextInput
+          field="ID Number"
+          options={{ toggle: true, checkBox: "internal" }}
+        />
+        <TextInput
+          field="Date of Birth "
+          options={{ toggle: true, checkBox: "internal" }}
+        />
+        <TextInput
+          field="Gender"
+          options={{ toggle: true, checkBox: "internal" }}
+        />
       </FormContainer>
     </section>
   );
