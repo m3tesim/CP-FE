@@ -1,9 +1,15 @@
-import "./App.css";
-
+import "./index.css";
+import SideNAV from "./components/SideNav";
+import Tabs from "./components/Tabs";
 function App() {
   return (
     <>
-      <div>Hello CP</div>
+      <div className="flex w-full">
+        <SideNAV />
+        <div className="w-full">
+          <Tabs />
+        </div>
+      </div>
     </>
   );
 }
