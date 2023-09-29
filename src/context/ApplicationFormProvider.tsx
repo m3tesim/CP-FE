@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { PersonalInformation, fetchData } from "./contextTypes";
-import { APIdata } from "../postData";
+import { data } from "../postData";
 
 type contextProps = {
   data: fetchData;
@@ -20,45 +20,49 @@ type Props = {
 };
 
 export const applicationContext = createContext({} as contextProps);
-
+const apiUrl =
+  "http://127.0.0.1:4010/api/481.2007825550955/programs/corrupti/application-form";
 export default function ApplicationFormProvider(props: Props) {
-  const [data, setData] = useState(APIdata as fetchData);
+  console.log(data, "this is data");
+  const [formData, setFormData] = useState(data as fetchData);
   const [personalInformation, setPersonalInformation] = useState(
     {} as PersonalInformation
   );
 
   useEffect(() => {
-    fetch(
-      "http://127.0.0.1:4010/api/738.0053943690481/programs/qui/application-form",
-      {
-        method: "PUT",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }
-    )
-      .then((response) => response.json())
+    fetch(apiUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response;
+      })
       .then((data) => {
-        console.log(data);
+        console.log("Application form updated successfully:", data);
       })
       .catch((error) => {
-        console.error("There was an error!", error);
+        console.error("Error updating application form:", error);
       });
-  }, [data]);
-
+  }, [formData]);
+  /*
   const handelPersonalInformation = () => {
-    const dataUpdate = { ...data };
+    const dataUpdate = { ...formData };
     dataUpdate.attributes.personalInformation = personalInformation;
-    setData(dataUpdate);
-  };
+    setFormData(dataUpdate);
+  };*/
 
   return (
     <>
       <applicationContext.Provider
         value={{
           data: data,
-          setData: setData,
+          setData: setFormData,
         }}
       >
         {props.children}

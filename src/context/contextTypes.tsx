@@ -13,17 +13,15 @@ export type PersonalInformation = {
   idNumber: InputOptions;
   dateOfBirth: InputOptions;
   gender: InputOptions;
-  personalQuestions: [
-    {
-      id: string;
-      type: string;
-      question: string;
-      choices: [string];
-      maxChoice: number;
-      disqualify: boolean;
-      other: boolean;
-    }
-  ];
+  personalQuestions: {
+    id: string;
+    type: string;
+    question: string;
+    choices: [string];
+    maxChoice: number;
+    disqualify: boolean;
+    other: boolean;
+  }[];
 };
 
 export type Profile = {
@@ -43,25 +41,25 @@ export type Profile = {
   ];
 };
 
-export type CustomisedQuestions = [
-  {
-    id: string;
-    type: string;
-    question: string;
-    choices: [string];
-    maxChoice: number;
-    disqualify: boolean;
-    other: boolean;
-  }
-];
-
-export type fetchData = {
+export type CustomisedQuestions = {
   id: string;
   type: string;
-  attributes: {
-    coverImage: string;
-    personalInformation: PersonalInformation;
-    profile: Profile;
-    customisedQuestions: CustomisedQuestions;
+  question: string;
+  choices: [string];
+  maxChoice: number;
+  disqualify: boolean;
+  other: boolean;
+};
+
+export type fetchData = {
+  data: {
+    id: string;
+    type: string;
+    attributes: {
+      coverImage: string;
+      personalInformation: PersonalInformation;
+      profile: Profile;
+      customisedQuestions: CustomisedQuestions[];
+    };
   };
 };

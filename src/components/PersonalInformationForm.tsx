@@ -29,10 +29,9 @@ const personalInformation: PersonalInformation = {
 const inputOptions: InputOptions = { internalUse: false, show: true };
 
 export default function PersonalInformationForm() {
-  const { data } = useContext(applicationContext);
-  console.log(data);
+  const { data, setData } = useContext(applicationContext);
   const [personalInfoData, setpersonalInfoData] = useState(
-    data?.attributes.personalInformation as PersonalInformation
+    data?.data.attributes?.personalInformation as PersonalInformation
   );
   const [phoneNumber, setPhoneNumber] = useState(inputOptions);
   const [nationality, setNationality] = useState(inputOptions);
@@ -59,7 +58,8 @@ export default function PersonalInformationForm() {
 
     setpersonalInfoData(newPersonalInfoData);
     const newApplicationData = { ...data };
-    newApplicationData.attributes.personalInformation = newPersonalInfoData;
+    newApplicationData.data.attributes.personalInformation =
+      newPersonalInfoData;
 
     setData(newApplicationData);
   };
