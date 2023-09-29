@@ -1,13 +1,12 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react";
-import { PersonalInformation, fetchData } from "./contextTypes";
+import { PersonalInformation, fetchData, Profile } from "./contextTypes";
 import { data } from "../postData";
 
 type contextProps = {
   data: fetchData;
   setData: Dispatch<SetStateAction<fetchData>>;
-  // personalInformation: PersonalInformation;
-  // setPersonalInformation: Dispatch<SetStateAction<PersonalInformation>>;
   handelPersonalInformation: (personalInformation: PersonalInformation) => void;
+  handelProfile: (profile: Profile) => void;
 };
 type Props = {
   children: React.ReactNode;
@@ -56,6 +55,14 @@ export default function ApplicationFormProvider(props: Props) {
     return handelUpdateData();
   };
 
+  const handelProfile = (profile: Profile) => {
+    const dataUpdate = { ...formData };
+    dataUpdate.data.attributes.profile = profile;
+    setFormData(dataUpdate);
+
+    return handelUpdateData();
+  };
+
   return (
     <>
       <applicationContext.Provider
@@ -63,6 +70,7 @@ export default function ApplicationFormProvider(props: Props) {
           data: data,
           setData: setFormData,
           handelPersonalInformation,
+          handelProfile,
         }}
       >
         {props.children}

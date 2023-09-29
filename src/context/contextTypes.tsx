@@ -1,6 +1,7 @@
 export type InputOptions = {
-  internalUse?: boolean;
   mandatory?: boolean;
+
+  internalUse?: boolean;
   show: boolean;
 };
 

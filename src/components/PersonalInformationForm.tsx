@@ -1,6 +1,6 @@
 import FormContainer from "./FormContainer";
 import TextInput from "./formElements/TextInput";
-import { PersonalInformation, InputOptions } from "../context/contextTypes";
+import { InputOptions } from "../context/contextTypes";
 import { useContext, useState } from "react";
 import { applicationContext } from "../context/ApplicationFormProvider";
 
@@ -8,9 +8,7 @@ const inputOptions: InputOptions = { internalUse: false, show: false };
 
 export default function PersonalInformationForm() {
   const { data, handelPersonalInformation } = useContext(applicationContext);
-  const [personalInfoData, setPersonalInfoData] = useState(
-    data?.data.attributes?.personalInformation as PersonalInformation
-  );
+
   const [phoneNumber, setPhoneNumber] = useState(inputOptions);
   const [nationality, setNationality] = useState(inputOptions);
   const [currentResidence, setCurrentResidence] = useState(inputOptions);
@@ -19,6 +17,7 @@ export default function PersonalInformationForm() {
   const [gender, setGender] = useState(inputOptions);
 
   const handelSave = () => {
+    const personalInfoData = data?.data.attributes?.personalInformation;
     const newPersonalInfoData = { ...personalInfoData };
     newPersonalInfoData.currentResidence = currentResidence;
     newPersonalInfoData.phoneNumber = phoneNumber;
@@ -27,7 +26,7 @@ export default function PersonalInformationForm() {
     newPersonalInfoData.dateOfBirth = dateOfBirth;
     newPersonalInfoData.gender = gender;
 
-    setPersonalInfoData(newPersonalInfoData);
+    //setPersonalInfoData(newPersonalInfoData);
 
     handelPersonalInformation(newPersonalInfoData);
   };
