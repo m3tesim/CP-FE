@@ -73,8 +73,12 @@ export default function PersonalInformationForm() {
           options={gender}
           text="internal"
         />
-
-        <button onClick={handelSave}>Save</button>
+        <button
+          className="mt-4 w-20 text-sm font-semibold border-solid border-2 border-gray-500 rounded-md px-3 py-2"
+          onClick={handelSave}
+        >
+          Update
+        </button>{" "}
       </FormContainer>
     </section>
   );
