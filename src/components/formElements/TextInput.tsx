@@ -5,23 +5,12 @@ import Toggle from "./Toggle";
 type Props = {
   field: string;
   setOptions?: React.Dispatch<React.SetStateAction<InputOptions>>;
-  options?: {
-    show: boolean;
-    internalUse: boolean;
-  };
+  options?: InputOptions;
   text?: string;
 };
 
 export default function TextInput({ setOptions, field, options, text }: Props) {
-  const handelOptions = () => {
-    const isChecked = options?.internalUse;
-    console.log(isChecked);
-
-    const newOptions = { ...options };
-    newOptions.internalUse = !isChecked;
-    //console.log(isChecked, "is check");
-
-    console.log(newOptions);
+  const handelOptions = (newOptions: InputOptions) => {
     setOptions && setOptions(newOptions as InputOptions);
   };
   return (
@@ -31,16 +20,19 @@ export default function TextInput({ setOptions, field, options, text }: Props) {
       </label>
       <div className="flex ga">
         {options && (
-          <span>
-            <CheckBox
-              checked={options.internalUse}
-              toggle={handelOptions}
-              field={text}
-              id={field}
-            />
-          </span>
+          <CheckBox
+            options={options}
+            handelOptions={handelOptions}
+            field={text}
+          />
         )}
-        {options?.show && <Toggle id={`${field} Show`} />}
+        {options && (
+          <Toggle
+            options={options}
+            handelOptions={handelOptions}
+            id={`${field} Show`}
+          />
+        )}
       </div>
     </div>
   );

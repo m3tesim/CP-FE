@@ -3,34 +3,12 @@ import TextInput from "./formElements/TextInput";
 import { PersonalInformation, InputOptions } from "../context/contextTypes";
 import { useContext, useState } from "react";
 import { applicationContext } from "../context/ApplicationFormProvider";
-console.log(applicationContext, "context");
-const personalInformation: PersonalInformation = {
-  firstName: { internalUse: false, show: true },
-  lastName: { internalUse: false, show: true },
-  emailId: { internalUse: false, show: true },
-  phoneNumber: { internalUse: false, show: true },
-  nationality: { internalUse: false, show: true },
-  currentResidence: { internalUse: false, show: true },
-  idNumber: { internalUse: false, show: true },
-  dateOfBirth: { internalUse: false, show: true },
-  gender: { internalUse: false, show: true },
-  personalQuestions: [
-    {
-      id: "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-      type: "Paragraph",
-      question: "string",
-      choices: ["string"],
-      maxChoice: 0,
-      disqualify: false,
-      other: false,
-    },
-  ],
-};
-const inputOptions: InputOptions = { internalUse: false, show: true };
+
+const inputOptions: InputOptions = { internalUse: false, show: false };
 
 export default function PersonalInformationForm() {
-  const { data, setData } = useContext(applicationContext);
-  const [personalInfoData, setpersonalInfoData] = useState(
+  const { data, handelPersonalInformation } = useContext(applicationContext);
+  const [personalInfoData, setPersonalInfoData] = useState(
     data?.data.attributes?.personalInformation as PersonalInformation
   );
   const [phoneNumber, setPhoneNumber] = useState(inputOptions);
@@ -41,13 +19,6 @@ export default function PersonalInformationForm() {
   const [gender, setGender] = useState(inputOptions);
 
   const handelSave = () => {
-    console.log(phoneNumber, "Phone");
-    console.log(nationality, "Nationality");
-    console.log(currentResidence, "current resident");
-    console.log(idNumber, "id number");
-    console.log(dateOfBirth, "date of birth");
-    console.log(gender, "Gender");
-
     const newPersonalInfoData = { ...personalInfoData };
     newPersonalInfoData.currentResidence = currentResidence;
     newPersonalInfoData.phoneNumber = phoneNumber;
@@ -56,12 +27,9 @@ export default function PersonalInformationForm() {
     newPersonalInfoData.dateOfBirth = dateOfBirth;
     newPersonalInfoData.gender = gender;
 
-    setpersonalInfoData(newPersonalInfoData);
-    const newApplicationData = { ...data };
-    newApplicationData.data.attributes.personalInformation =
-      newPersonalInfoData;
+    setPersonalInfoData(newPersonalInfoData);
 
-    setData(newApplicationData);
+    handelPersonalInformation(newPersonalInfoData);
   };
 
   return (
@@ -80,23 +48,32 @@ export default function PersonalInformationForm() {
           setOptions={setNationality}
           field="Nationality"
           options={nationality}
+          text="internal"
         />
         <TextInput
           setOptions={setCurrentResidence}
           field="Current Residence "
           options={currentResidence}
+          text="internal"
         />
         <TextInput
           setOptions={setIdNumber}
           field="ID Number"
           options={idNumber}
+          text="internal"
         />
         <TextInput
           setOptions={setDateOfBirth}
           field="Date of Birth "
           options={dateOfBirth}
+          text="internal"
         />
-        <TextInput setOptions={setGender} field="Gender" options={gender} />
+        <TextInput
+          setOptions={setGender}
+          field="Gender"
+          options={gender}
+          text="internal"
+        />
 
         <button onClick={handelSave}>Save</button>
       </FormContainer>

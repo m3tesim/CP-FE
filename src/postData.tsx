@@ -24,15 +24,6 @@ export const data = {
             disqualify: false,
             other: false,
           },
-          {
-            id: "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-            type: "Paragraph",
-            question: "string",
-            choices: ["string"],
-            maxChoice: 0,
-            disqualify: false,
-            other: false,
-          },
         ],
       },
       profile: {
