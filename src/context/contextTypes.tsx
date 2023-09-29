@@ -1,13 +1,18 @@
+export type InputOptions = {
+  internalUse: boolean;
+  show: boolean;
+};
+
 export type PersonalInformation = {
-  firstName: { internalUse: boolean; show: boolean };
-  lastName: { internalUse: boolean; show: boolean };
-  emailId: { internalUse: boolean; show: boolean };
-  phoneNumber: { internalUse: boolean; show: boolean };
-  nationality: { internalUse: boolean; show: boolean };
-  currentResidence: { internalUse: boolean; show: boolean };
-  idNumber: { internalUse: boolean; show: boolean };
-  dateOfBirth: { internalUse: boolean; show: boolean };
-  gender: { internalUse: boolean; show: boolean };
+  firstName: InputOptions;
+  lastName: InputOptions;
+  emailId: InputOptions;
+  phoneNumber: InputOptions;
+  nationality: InputOptions;
+  currentResidence: InputOptions;
+  idNumber: InputOptions;
+  dateOfBirth: InputOptions;
+  gender: InputOptions;
   personalQuestions: [
     {
       id: string;

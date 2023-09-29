@@ -1,12 +1,19 @@
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { PersonalInformation, fetchData } from "./contextTypes";
-import APIData from "../postData.json";
+import { APIdata } from "../postData";
 
 type contextProps = {
   data: fetchData;
   setData: Dispatch<SetStateAction<fetchData>>;
-  personalInformation: PersonalInformation;
-  setPersonalInformation: Dispatch<SetStateAction<PersonalInformation>>;
+  // personalInformation: PersonalInformation;
+  // setPersonalInformation: Dispatch<SetStateAction<PersonalInformation>>;
+  // handelPersonalInformation: () => void;
 };
 type Props = {
   children: React.ReactNode;
@@ -14,14 +21,34 @@ type Props = {
 
 export const applicationContext = createContext({} as contextProps);
 
-export default function ApplicationFormProvider({ children }: Props) {
-  const [data, setData] = useState({} as fetchData);
+export default function ApplicationFormProvider(props: Props) {
+  const [data, setData] = useState(APIdata as fetchData);
   const [personalInformation, setPersonalInformation] = useState(
     {} as PersonalInformation
   );
 
-  const handelDataFetch = () => {
-    const dataUpdate = data;
+  useEffect(() => {
+    fetch(
+      "http://127.0.0.1:4010/api/738.0053943690481/programs/qui/application-form",
+      {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  }, [data]);
+
+  const handelPersonalInformation = () => {
+    const dataUpdate = { ...data };
     dataUpdate.attributes.personalInformation = personalInformation;
     setData(dataUpdate);
   };
@@ -29,9 +56,12 @@ export default function ApplicationFormProvider({ children }: Props) {
   return (
     <>
       <applicationContext.Provider
-        value={{ data, setData, personalInformation, setPersonalInformation }}
+        value={{
+          data: data,
+          setData: setData,
+        }}
       >
-        {children}
+        {props.children}
       </applicationContext.Provider>
     </>
   );
