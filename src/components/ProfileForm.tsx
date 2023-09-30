@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { applicationContext } from "../context/ApplicationFormProvider";
-import { InputOptions } from "../context/contextTypes";
+import { CustomQuestion, InputOptions } from "../context/contextTypes";
+import AdditionalQuestions from "./AdditionalQuestions";
 import AddQuestion from "./AddQuestion";
 import CustomQuestions from "./CustomQuestion";
 import FormContainer from "./FormContainer";
@@ -18,12 +19,9 @@ export default function ProfileForm() {
   //---------------------------------------------
   //---------------------------------------------
   //---------------------------------------------
-  interface QuestionProps {
-    type?: string;
-    question?: string;
-  }
-  const [questionValue, setQuestionValue] = useState<string>("");
-  const [questionsArray, setQuestionsArray] = useState<QuestionProps[]>([]);
+  const [additionalQuestion, setAdditionalQuestion] = useState<
+    CustomQuestion[]
+  >([]);
 
   //---------------------------------------------
   //---------------------------------------------
@@ -67,16 +65,20 @@ export default function ProfileForm() {
           onClick={handelSave}
         >
           Update
-        </button>{" "}
+        </button>
         <AddQuestion addQuestion={setOpenNewQuestion} />
       </FormContainer>
+      {additionalQuestion.length > 0 && (
+        <AdditionalQuestions
+          additionalQuestion={additionalQuestion}
+          form="Profile"
+        />
+      )}
       {openNewQuestion && (
         <CustomQuestions
-          deleteQuestions={setOpenNewQuestion}
-          setQuestionValue={setQuestionValue}
-          setQuestionsArray={setQuestionsArray}
-          questionsArray={questionsArray}
-          questionValue={questionValue}
+          closeNewQuestion={setOpenNewQuestion}
+          additionalQuestion={additionalQuestion}
+          setQuestionsArray={setAdditionalQuestion}
         />
       )}
     </section>

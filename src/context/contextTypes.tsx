@@ -5,7 +5,7 @@ export type InputOptions = {
   show: boolean;
 };
 
-type CustomQuestions = {
+export type CustomQuestion = {
   id: string;
   type: string;
   question: string;
@@ -24,14 +24,14 @@ export type PersonalInformation = {
   idNumber: InputOptions;
   dateOfBirth: InputOptions;
   gender: InputOptions;
-  personalQuestions: CustomQuestions[];
+  personalQuestions: CustomQuestion[];
 };
 
 export type Profile = {
   education: { mandatory: boolean; show: boolean };
   experience: { mandatory: boolean; show: boolean };
   resume: { mandatory: boolean; show: boolean };
-  profileQuestions: CustomQuestions[];
+  profileQuestions: CustomQuestion[];
 };
 
 export type fetchData = {
@@ -42,7 +42,7 @@ export type fetchData = {
       coverImage: string;
       personalInformation: PersonalInformation;
       profile: Profile;
-      customisedQuestions: CustomQuestions[];
+      customisedQuestions: CustomQuestion[];
     };
   };
 };

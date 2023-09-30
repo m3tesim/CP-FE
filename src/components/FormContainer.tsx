@@ -7,7 +7,7 @@ type Props = {
 
 export default function FormContainer({ children, title }: Props) {
   return (
-    <div className="w-5/12  shadow-md ml-52 rounded-2xl my-28 ">
+    <div className="w-5/12  shadow-md ml-52 rounded-2xl my-20">
       <h2 className="bg-cyan-100 w-full text-left  h-20 py-6 pl-8 rounded-t-2xl text-2xl font-Poppins font-semibold">
         {title}
       </h2>
