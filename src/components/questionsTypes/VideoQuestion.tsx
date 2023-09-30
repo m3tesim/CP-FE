@@ -1,10 +1,13 @@
-import React from "react";
+import { useContext } from "react";
+import { customQuestionContext } from "../CustomQuestion";
 
 export default function VideoQuestion() {
+  const { textInputRef } = useContext(customQuestionContext);
+
   return (
     <div>
-      {" "}
       <input
+        ref={textInputRef}
         name="questionValue"
         type="text"
         className="w-full p-4 bg-white border border-black rounded mt-4"
