@@ -7,7 +7,7 @@ import {
 } from "react";
 import QuestionType from "./QuestionType";
 import Select from "./formElements/Select";
-import DeleteQuestion from "./formElements/Delete";
+import Delete from "./formElements/Delete";
 import FormContainer from "./FormContainer";
 import { CustomQuestion } from "../context/contextTypes";
 import { v4 as uuidv4 } from "uuid";
@@ -70,7 +70,7 @@ const CustomQuestions = ({
 
         <div className="mt-14 cursor-pointer flex flex-row justify-between">
           <span onClick={() => closeNewQuestion(false)}>
-            <DeleteQuestion />
+            <Delete text="Delete question" />
           </span>
 
           <button
