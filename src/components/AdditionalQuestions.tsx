@@ -2,11 +2,16 @@ import { CustomQuestion } from "../context/contextTypes";
 import FormContainer from "./FormContainer";
 import Pencil from "../assets/pen.svg";
 
-type Props = { form: string; additionalQuestion: CustomQuestion[] };
+type Props = {
+  form: string;
+  additionalQuestion: CustomQuestion[];
+  handelSave: () => void;
+};
 
 export default function AdditionalQuestions({
   form,
   additionalQuestion,
+  handelSave,
 }: Props) {
   console.log(additionalQuestion, "this is aditional question ");
   return (
@@ -20,6 +25,12 @@ export default function AdditionalQuestions({
           </div>
         </div>
       ))}
+      <button
+        className="mt-4 w-20 text-sm font-semibold border-solid border-2 border-gray-500 rounded-md px-3 py-2"
+        onClick={handelSave}
+      >
+        Update
+      </button>
     </FormContainer>
   );
 }

@@ -19,7 +19,6 @@ export default function CustomQuestionsProvider(props: Props) {
       >
         {props.children}
       </customQuestionContext.Provider>
-      CustomQuestionsProvider
     </div>
   );
 }

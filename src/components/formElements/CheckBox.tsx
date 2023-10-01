@@ -20,7 +20,6 @@ export default function CheckBox({
       newOptions.mandatory = !newOptions.mandatory;
 
     handelOptions(newOptions as InputOptions);
-    console.log(newOptions);
   };
   return (
     <div className="flex flex-row mt-4 place-items-center">

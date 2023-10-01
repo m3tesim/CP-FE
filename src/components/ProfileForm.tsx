@@ -11,7 +11,7 @@ import TextInput from "./formElements/TextInput";
 const inputOptions: InputOptions = { mandatory: false, show: false };
 
 export default function ProfileForm() {
-  const { data, handelProfile } = useContext(applicationContext);
+  const { handelProfile } = useContext(applicationContext);
 
   const [education, setEducation] = useState(inputOptions);
   const [experience, setExperience] = useState(inputOptions);
@@ -23,15 +23,12 @@ export default function ProfileForm() {
   >([]);
 
   const handelSave = () => {
-    const profileData = data?.data.attributes?.profile;
-    const newProfileData = { ...profileData };
-
-    newProfileData.education = education;
-    newProfileData.experience = experience;
-    newProfileData.resume = resume;
-
-    //setPersonalInfoData(newPersonalInfoData);
-
+    const newProfileData = {
+      education: education,
+      experience: experience,
+      resume: resume,
+      profileQuestions: additionalQuestion,
+    };
     handelProfile(newProfileData);
   };
 
@@ -68,6 +65,7 @@ export default function ProfileForm() {
         <AdditionalQuestions
           additionalQuestion={additionalQuestion}
           form="Profile"
+          handelSave={handelSave}
         />
       )}
       <CustomQuestionsProvider>

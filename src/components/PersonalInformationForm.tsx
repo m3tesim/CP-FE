@@ -1,13 +1,17 @@
 import FormContainer from "./FormContainer";
 import TextInput from "./formElements/TextInput";
-import { InputOptions } from "../context/contextTypes";
+import { CustomQuestion, InputOptions } from "../context/contextTypes";
 import { useContext, useState } from "react";
 import { applicationContext } from "../context/ApplicationFormProvider";
+import CustomQuestionsProvider from "../context/CustomQuestionsProvider";
+import CustomQuestions from "./CustomQuestion";
+import AdditionalQuestions from "./AdditionalQuestions";
+import AddQuestion from "./AddQuestion";
 
 const inputOptions: InputOptions = { internalUse: false, show: false };
 
 export default function PersonalInformationForm() {
-  const { data, handelPersonalInformation } = useContext(applicationContext);
+  const { handelPersonalInformation } = useContext(applicationContext);
 
   const [phoneNumber, setPhoneNumber] = useState(inputOptions);
   const [nationality, setNationality] = useState(inputOptions);
@@ -16,38 +20,25 @@ export default function PersonalInformationForm() {
   const [dateOfBirth, setDateOfBirth] = useState(inputOptions);
   const [gender, setGender] = useState(inputOptions);
 
+  const [openNewQuestion, setOpenNewQuestion] = useState<boolean>(false);
+  const [additionalQuestion, setAdditionalQuestion] = useState<
+    CustomQuestion[]
+  >([]);
+
   const handelSave = () => {
-    const personalInfoData = data?.data.attributes?.personalInformation;
-    const newPersonalInfoData = { ...personalInfoData };
-    newPersonalInfoData.currentResidence = currentResidence;
-    newPersonalInfoData.phoneNumber = phoneNumber;
-    newPersonalInfoData.nationality = nationality;
-    newPersonalInfoData.idNumber = idNumber;
-    newPersonalInfoData.dateOfBirth = dateOfBirth;
-    newPersonalInfoData.gender = gender;
-
-    //setPersonalInfoData(newPersonalInfoData);
-
-    const newPersonalInfoData2 = {
+    const personalInfoData = {
+      firstName: inputOptions,
+      lastName: inputOptions,
+      emailId: inputOptions,
       currentResidence: currentResidence,
       phoneNumber: phoneNumber,
       nationality: nationality,
       idNumber: idNumber,
       dateOfBirth: dateOfBirth,
       gender: gender,
-      personalQuestions: [
-        {
-          id: "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-          type: "Paragraph",
-          question: "string",
-          choices: ["string"],
-          maxChoice: 0,
-          disqualify: false,
-          other: false,
-        },
-      ],
+      personalQuestions: additionalQuestion,
     };
-    handelPersonalInformation(newPersonalInfoData);
+    handelPersonalInformation(personalInfoData);
   };
 
   return (
@@ -97,8 +88,25 @@ export default function PersonalInformationForm() {
           onClick={handelSave}
         >
           Update
-        </button>{" "}
+        </button>
+        <AddQuestion addQuestion={setOpenNewQuestion} />
       </FormContainer>
+      {additionalQuestion.length > 0 && (
+        <AdditionalQuestions
+          additionalQuestion={additionalQuestion}
+          handelSave={handelSave}
+          form="Personal Information"
+        />
+      )}
+      <CustomQuestionsProvider>
+        {openNewQuestion && (
+          <CustomQuestions
+            closeNewQuestion={setOpenNewQuestion}
+            additionalQuestion={additionalQuestion}
+            setQuestionsArray={setAdditionalQuestion}
+          />
+        )}
+      </CustomQuestionsProvider>
     </section>
   );
 }

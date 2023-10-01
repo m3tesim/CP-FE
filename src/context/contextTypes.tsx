@@ -28,9 +28,9 @@ export type PersonalInformation = {
 };
 
 export type Profile = {
-  education: { mandatory: boolean; show: boolean };
-  experience: { mandatory: boolean; show: boolean };
-  resume: { mandatory: boolean; show: boolean };
+  education: InputOptions;
+  experience: InputOptions;
+  resume: InputOptions;
   profileQuestions: CustomQuestion[];
 };
 

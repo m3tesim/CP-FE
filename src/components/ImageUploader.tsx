@@ -22,7 +22,6 @@ export default function ImageUploader() {
   const deleteImage = () => {
     setImage(null);
   };
-  console.log(image, "url");
   return (
     <FormContainer title="Upload cover image">
       <div>

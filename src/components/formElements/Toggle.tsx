@@ -19,7 +19,6 @@ function Toggle({ options, handelOptions, id }: Props) {
     const newOptions = { ...options };
     newOptions.show = !isChecked;
     handelOptions(newOptions as InputOptions);
-    console.log(newOptions);
   };
 
   return (

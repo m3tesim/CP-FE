@@ -10,7 +10,7 @@ import { customQuestionContext } from "../context/CustomQuestionsProvider";
 type Props = {
   closeNewQuestion: Dispatch<SetStateAction<boolean>>;
   additionalQuestion: CustomQuestion[];
-  setQuestionsArray: Dispatch<SetStateAction<CustomQuestion[]>>;
+  setQuestionsArray: (prevState: CustomQuestion[]) => void;
 };
 
 const CustomQuestions = ({
@@ -30,7 +30,7 @@ const CustomQuestions = ({
       type: selectionValue,
       question: textInputRef?.current?.value || "",
       choices: [choiceRef.current?.value || "string"],
-      maxChoice: Number(maxChoiceRef?.current?.value),
+      maxChoice: Number(maxChoiceRef?.current?.value) || 0,
       disqualify: false,
       other: false,
     };
