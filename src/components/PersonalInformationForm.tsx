@@ -28,6 +28,25 @@ export default function PersonalInformationForm() {
 
     //setPersonalInfoData(newPersonalInfoData);
 
+    const newPersonalInfoData2 = {
+      currentResidence: currentResidence,
+      phoneNumber: phoneNumber,
+      nationality: nationality,
+      idNumber: idNumber,
+      dateOfBirth: dateOfBirth,
+      gender: gender,
+      personalQuestions: [
+        {
+          id: "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+          type: "Paragraph",
+          question: "string",
+          choices: ["string"],
+          maxChoice: 0,
+          disqualify: false,
+          other: false,
+        },
+      ],
+    };
     handelPersonalInformation(newPersonalInfoData);
   };
 

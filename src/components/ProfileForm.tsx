@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { applicationContext } from "../context/ApplicationFormProvider";
 import { CustomQuestion, InputOptions } from "../context/contextTypes";
+import CustomQuestionsProvider from "../context/CustomQuestionsProvider";
 import AdditionalQuestions from "./AdditionalQuestions";
 import AddQuestion from "./AddQuestion";
 import CustomQuestions from "./CustomQuestion";
@@ -16,15 +17,10 @@ export default function ProfileForm() {
   const [experience, setExperience] = useState(inputOptions);
   const [resume, setResume] = useState(inputOptions);
   const [openNewQuestion, setOpenNewQuestion] = useState<boolean>(false);
-  //---------------------------------------------
-  //---------------------------------------------
-  //---------------------------------------------
+
   const [additionalQuestion, setAdditionalQuestion] = useState<
     CustomQuestion[]
   >([]);
-
-  //---------------------------------------------
-  //---------------------------------------------
 
   const handelSave = () => {
     const profileData = data?.data.attributes?.profile;
@@ -74,13 +70,15 @@ export default function ProfileForm() {
           form="Profile"
         />
       )}
-      {openNewQuestion && (
-        <CustomQuestions
-          closeNewQuestion={setOpenNewQuestion}
-          additionalQuestion={additionalQuestion}
-          setQuestionsArray={setAdditionalQuestion}
-        />
-      )}
+      <CustomQuestionsProvider>
+        {openNewQuestion && (
+          <CustomQuestions
+            closeNewQuestion={setOpenNewQuestion}
+            additionalQuestion={additionalQuestion}
+            setQuestionsArray={setAdditionalQuestion}
+          />
+        )}
+      </CustomQuestionsProvider>
     </section>
   );
 }

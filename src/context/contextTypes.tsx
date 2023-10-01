@@ -46,3 +46,8 @@ export type fetchData = {
     };
   };
 };
+export type CustomQuestionContext = {
+  textInputRef: React.MutableRefObject<HTMLInputElement | null>;
+  choiceRef: React.MutableRefObject<HTMLInputElement | null>;
+  maxChoiceRef: React.MutableRefObject<HTMLInputElement | null>;
+};

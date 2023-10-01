@@ -11,8 +11,8 @@ export default function AdditionalQuestions({
   console.log(additionalQuestion, "this is aditional question ");
   return (
     <FormContainer title={`${form} Additional Questions`}>
-      {additionalQuestion?.map((question) => (
-        <div className="border-solid border-gray-100 border-b mb-4">
+      {additionalQuestion?.map((question, index) => (
+        <div key={index} className="border-solid border-gray-100 border-b mb-4">
           <p className="text-gray-400 pb-3">{question.type}</p>
           <div className="flex justify-between pb-6">
             <p className="font-bold">{question.question}</p>

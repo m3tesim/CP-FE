@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { customQuestionContext } from "../CustomQuestion";
+import { customQuestionContext } from "../../context/CustomQuestionsProvider";
 
 const TextQuestion = () => {
   const { textInputRef } = useContext(customQuestionContext);

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { customQuestionContext } from "../CustomQuestion";
+import { customQuestionContext } from "../../context/CustomQuestionsProvider";
 
 export default function VideoQuestion() {
   const { textInputRef } = useContext(customQuestionContext);

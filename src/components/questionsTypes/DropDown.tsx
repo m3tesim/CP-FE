@@ -1,7 +1,7 @@
 import Plus from "../../assets/plus.svg";
 import Group from "../../assets/group.svg";
 import { useContext } from "react";
-import { customQuestionContext } from "../CustomQuestion";
+import { customQuestionContext } from "../../context/CustomQuestionsProvider";
 
 export default function DropDown() {
   const { textInputRef, choiceRef } = useContext(customQuestionContext);

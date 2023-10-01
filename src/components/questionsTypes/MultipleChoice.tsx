@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Group from "../../assets/group.svg";
 import Plus from "../../assets/plus.svg";
-import { customQuestionContext } from "../CustomQuestion";
+import { customQuestionContext } from "../../context/CustomQuestionsProvider";
 
 export default function MultipleChoice() {
   const { textInputRef, choiceRef, maxChoiceRef } = useContext(
