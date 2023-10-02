@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Tabs() {
   return (
     <div className="h-28  flex shadow-md mt-16 min-w-full justify-center text-xl place-items-center">
