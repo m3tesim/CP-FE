@@ -41,6 +41,10 @@ export default function PersonalInformationForm() {
     handelPersonalInformation(personalInfoData);
   };
 
+  const handleAdditionalQuestions = (array: CustomQuestion[]) => {
+    setAdditionalQuestion(() => array);
+  };
+
   return (
     <section>
       <FormContainer title="Personal Information">
@@ -94,6 +98,8 @@ export default function PersonalInformationForm() {
       {additionalQuestion.length > 0 && (
         <AdditionalQuestions
           additionalQuestion={additionalQuestion}
+          setQuestionsArray={(array) => handleAdditionalQuestions(array)}
+          closeNewQuestion={setOpenNewQuestion}
           handelSave={handelSave}
           form="Personal Information"
         />
@@ -103,7 +109,7 @@ export default function PersonalInformationForm() {
           <CustomQuestions
             closeNewQuestion={setOpenNewQuestion}
             additionalQuestion={additionalQuestion}
-            setQuestionsArray={setAdditionalQuestion}
+            setQuestionsArray={(array) => handleAdditionalQuestions(array)}
           />
         )}
       </CustomQuestionsProvider>

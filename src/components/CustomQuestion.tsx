@@ -22,7 +22,6 @@ const CustomQuestions = ({
     customQuestionContext
   );
   const [selectionValue, setSelectionValue] = useState<string>("");
-  console.log(additionalQuestion, "this is aditional question  from custom");
 
   const handelSaveQuestion = () => {
     const newQuestion: CustomQuestion = {
@@ -42,27 +41,29 @@ const CustomQuestions = ({
   };
   return (
     <FormContainer title="Additional Questions">
-      <p className="text-left text-lg font-semibold">Type</p>
-      <Select changeSelectionValue={setSelectionValue} />
-      <div className="mt-10">
-        {selectionValue && (
-          <p className="text-left text-lg font-semibold">Question</p>
-        )}
-        <QuestionType selectionValue={selectionValue} />
-      </div>
+      <section id="new-question">
+        <p className="text-left text-lg font-semibold">Type</p>
+        <Select changeSelectionValue={setSelectionValue} />
+        <div className="mt-10">
+          {selectionValue && (
+            <p className="text-left text-lg font-semibold">Question</p>
+          )}
+          <QuestionType selectionValue={selectionValue} />
+        </div>
 
-      <div className="mt-14 cursor-pointer flex flex-row justify-between">
-        <span onClick={() => closeNewQuestion(false)}>
-          <Delete text="Delete question" />
-        </span>
+        <div className="mt-14 cursor-pointer flex flex-row justify-between">
+          <span onClick={() => closeNewQuestion(false)}>
+            <Delete text="Delete question" />
+          </span>
 
-        <button
-          className="text-green-50 text-sm font-semibold font-Poppins  bg-green-700 rounded-md px-3 py-2"
-          onClick={handelSaveQuestion}
-        >
-          Save
-        </button>
-      </div>
+          <button
+            className="text-green-50 text-sm font-semibold font-Poppins  bg-green-700 rounded-md px-3 py-2"
+            onClick={handelSaveQuestion}
+          >
+            Save
+          </button>
+        </div>
+      </section>
     </FormContainer>
   );
 };

@@ -7,7 +7,7 @@ export default function ApplicationForm() {
     <>
       <ImageUploader />
       <PersonalInformationForm />
-      <ProfileForm />
+      <ProfileForm />\
     </>
   );
 }

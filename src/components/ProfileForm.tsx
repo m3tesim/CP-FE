@@ -64,6 +64,8 @@ export default function ProfileForm() {
       {additionalQuestion.length > 0 && (
         <AdditionalQuestions
           additionalQuestion={additionalQuestion}
+          setQuestionsArray={setAdditionalQuestion}
+          closeNewQuestion={setOpenNewQuestion}
           form="Profile"
           handelSave={handelSave}
         />
